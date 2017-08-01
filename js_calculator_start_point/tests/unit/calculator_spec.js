@@ -210,5 +210,42 @@ describe('calculator', function () {
     calculator.divide(0)
     assert.equal(Infinity, calculator.runningTotal)
   })
+  //numberClick()
+  // when a number is clicked, if a previous operation has just been completed,
+    // or there is a zero in the running total, clear the running total, and reset
+    // the `newTotal` flag
+
+  it('it can set newTotal flag', function () {
+    calculator.numberClick(1)
+    assert.equal(false, calculator.newTotal)
+  }) 
+  
+  it('it can set the running total to the clicked number', function () {
+    calculator.numberClick(1)
+    assert.equal(1, calculator.runningTotal)
+  })
+
+  it('it can set the runningTotal to the clicked numberS ', function () {
+    calculator.numberClick(1)
+    calculator.numberClick(2)
+    assert.equal(12, calculator.runningTotal)
+  })
+
+  it('it can handle many 0 clicked', function () {
+    calculator.numberClick(0)
+    calculator.numberClick(0)
+    calculator.numberClick(0)
+    assert.equal(0, calculator.runningTotal)
+  })
+
+
+
+
+
+
+
+
+
+
 
 });
