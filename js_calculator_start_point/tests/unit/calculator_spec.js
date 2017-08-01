@@ -211,9 +211,6 @@ describe('calculator', function () {
     assert.equal(Infinity, calculator.runningTotal)
   })
   //numberClick()
-  // when a number is clicked, if a previous operation has just been completed,
-    // or there is a zero in the running total, clear the running total, and reset
-    // the `newTotal` flag
 
   it('it can set newTotal flag', function () {
     calculator.numberClick(1)
@@ -237,6 +234,106 @@ describe('calculator', function () {
     calculator.numberClick(0)
     assert.equal(0, calculator.runningTotal)
   })
+
+  // operatorClick
+  it('operatorClick can set sum', function () {
+    calculator.operatorClick("+") 
+    assert.equal("+", calculator.previousOperator)
+  })
+
+  it('operatorClick can use previous when two operator clicks are passed sum', function () {
+    calculator.numberClick(3)
+    calculator.operatorClick("+")
+    calculator.operatorClick("*")
+    assert.equal(6, calculator.runningTotal)
+  })
+
+  it('operatorClick can set subtract', function () {
+    calculator.operatorClick("-")
+    assert.equal("-", calculator.previousOperator)
+  })
+
+  it('operatorClick can use previous when two operator clicks are passed subtraction', function () {
+    calculator.numberClick(3)
+    calculator.operatorClick("-")
+    calculator.operatorClick("/")
+    assert.equal(0, calculator.runningTotal)
+  })
+
+  it('operatorClick can set multiply', function () {
+    calculator.operatorClick("*")
+    assert.equal("*", calculator.previousOperator)
+  })
+
+  it('operatorClick can use previous when two operator clicks are passed multiply', function () {
+    calculator.numberClick(3)
+    calculator.operatorClick("*")
+    calculator.operatorClick("-")
+    assert.equal(9, calculator.runningTotal)
+  })
+
+  it('operatorClick can set divide', function () {
+    calculator.operatorClick("/")
+    assert.equal("/", calculator.previousOperator)
+  })
+
+  it('operatorClick can use previous when two operator clicks are passed divide', function () {
+    calculator.numberClick(3)
+    calculator.operatorClick("/")
+    calculator.operatorClick("*")
+    assert.equal(1, calculator.runningTotal)
+  })
+
+  it('operatorClick with equal sign clears previousOperator', function () {
+    calculator.operatorClick("=")
+    assert.equal(null, calculator.previousOperator)
+  })
+
+  it('operatorClick can use any operator as equals', function () {
+    calculator.numberClick(1)
+    calculator.operatorClick("+")
+    calculator.numberClick(1)
+    calculator.operatorClick("*")
+    assert.equal(2, calculator.runningTotal)
+  })
+
+  it('operatorClick can use any operator as equals and set new total', function () {
+    calculator.numberClick(1)
+    calculator.operatorClick("+")
+    calculator.numberClick(1)
+    calculator.operatorClick("*")
+    assert.equal(true, calculator.newTotal)
+  })
+
+  //clearClick()
+
+  it('Clearclick can set running total to 0', function () {
+    calculator.numberClick(3)
+    assert.equal(3, calculator.runningTotal)
+    calculator.clearClick()
+    assert.equal(0, calculator.runningTotal)
+  })
+
+  it('Clearclick can set new total to false', function () {
+    calculator.numberClick(3)
+    assert.equal(3, calculator.runningTotal)
+    calculator.clearClick()
+    assert.equal(false, calculator.newTotal)
+  })
+
+  it('Clearclick can clear even if an operator has been pressed', function () {
+    calculator.numberClick(3)
+    calculator.operatorClick("+")
+    assert.equal(3, calculator.runningTotal)
+    assert.equal("+", calculator.previousOperator)
+    assert.equal(3, calculator.previousTotal)
+    calculator.clearClick()
+    assert.equal(0, calculator.runningTotal)
+  })
+
+  
+
+
 
 
 
