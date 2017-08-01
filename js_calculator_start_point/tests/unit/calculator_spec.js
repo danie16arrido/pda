@@ -127,6 +127,88 @@ describe('calculator', function () {
   })
   ///Divide
 
+  it('it can handle any number divide by 1 equals such number', function () {
+    calculator.previousTotal = 44
+    calculator.divide(1)
+    assert.equal(44, calculator.runningTotal)
+  })
 
+  it('it can handle any number divide by itself is equal to 1', function () {
+    calculator.previousTotal = 33
+    calculator.divide(33)
+    assert.equal(1, calculator.runningTotal)
+  })
+
+  it('it can handle 15 decimals rounding', function () {
+    calculator.previousTotal = 19
+    calculator.divide(3)
+    assert.equal(6.333333333333333, calculator.runningTotal)
+  })
+
+  it('it can handle 1 decimal rounding', function () {
+    calculator.previousTotal = 19
+    calculator.divide(2)
+    assert.equal(9.5, calculator.runningTotal)
+  })
+
+  it('it can handle exact division', function () {
+    calculator.previousTotal = 15
+    calculator.divide(3)
+    assert.equal(5, calculator.runningTotal)
+  })
+
+  it('it can handle subdivison', function () {
+    calculator.previousTotal = 2
+    calculator.divide(8)
+    assert.equal(0.25, calculator.runningTotal)
+  })
+
+  it('it can handle negative numbers', function () {
+    calculator.previousTotal = 19
+    calculator.divide(-2)
+    assert.equal(-9.5, calculator.runningTotal)
+  })
+
+  it('it can handle negatigve numbers II', function () {
+    calculator.previousTotal = -19
+    calculator.divide(2)
+    assert.equal(-9.5, calculator.runningTotal)
+  })
+
+  it('it can handle two negative numbers', function () {
+    calculator.previousTotal = -19
+    calculator.divide(-2)
+    assert.equal(9.5, calculator.runningTotal)
+  })
+
+  it('it can handle 0 divided by any number', function () {
+    calculator.previousTotal = 0
+    calculator.divide(2)
+    assert.equal(0, calculator.runningTotal)
+  })
+
+  it('it can handle 0 divide by negative number', function () {
+    calculator.previousTotal = 0
+    calculator.divide(-2)
+    assert.equal(0, calculator.runningTotal)
+  })
+
+  it('it can handle positive number divided by 0', function () {
+    calculator.previousTotal = 19
+    calculator.divide(0)
+    assert.equal(Infinity, calculator.runningTotal)
+  })
+
+  it('it can handle negative number divided by 0', function () {
+    calculator.previousTotal = -19
+    calculator.divide(0)
+    assert.equal(-Infinity, calculator.runningTotal)
+  })
+
+  it('it can handle 0 divided by 0', function () {
+    calculator.previousTotal = 19
+    calculator.divide(0)
+    assert.equal(Infinity, calculator.runningTotal)
+  })
 
 });
