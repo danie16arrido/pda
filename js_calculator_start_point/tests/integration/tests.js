@@ -91,16 +91,16 @@ describe('calculator functionality', function() {
     expect(running_total.getAttribute('value')).to.eventually.equal('120')
   })
 
-  it('should be able to display infinity when 0 is the divisor', function () {
+  it('should be able to display message when 0 is the divisor', function () {
     running_total = element(by.css('#running_total'))
     element(by.css('#number6')).click();
     element(by.css('#operator_divide')).click();
     element(by.css('#number0')).click();
     element(by.css('#operator_equals')).click();
-    expect(running_total.getAttribute('value')).to.eventually.equal('Infinity')
+    expect(running_total.getAttribute('value')).to.eventually.equal('Division by 0 not allowed')
   })
 
-  it('should be able to display negative infinity when 0 is the divisor', function () {
+  it('should be able to display message when 0 is the divisor II', function () {
     running_total = element(by.css('#running_total'))
     element(by.css('#number6')).click();
     element(by.css('#operator_subtract')).click();
@@ -109,7 +109,7 @@ describe('calculator functionality', function() {
     element(by.css('#operator_divide')).click();
     element(by.css('#number0')).click();
     element(by.css('#operator_equals')).click();
-    expect(running_total.getAttribute('value')).to.eventually.equal('-Infinity')
+    expect(running_total.getAttribute('value')).to.eventually.equal('Division by 0 not allowed')
   })
 
   it('should be able to display negative numbers', function () {
